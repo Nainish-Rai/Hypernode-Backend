@@ -1,6 +1,7 @@
 import User from "../models/User.js";
 import Fraction from "../models/Fraction.js";
 import Batch from "../models/Batch.js";
+import { v4 as uuidv4 } from "uuid";
 
 export const purchaseFractions = async (req, res) => {
   const { walletAddress, quantity } = req.body;
@@ -13,7 +14,7 @@ export const purchaseFractions = async (req, res) => {
     }
 
     for (let i = 0; i < quantity; i++) {
-      const tokenId = (await Fraction.countDocuments()) + 1;
+      const tokenId = uuidv4();
       const fraction = new Fraction({ tokenId, owner: user._id });
       await fraction.save();
 
@@ -33,7 +34,7 @@ export const purchaseFractions = async (req, res) => {
       await fraction.save();
     }
 
-    res.status(200).send("Fractions purchased successfully");
+    res.status(200).json({ message: "Fractions purchased successfully" });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");

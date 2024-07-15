@@ -4,13 +4,15 @@ import dotenv from "dotenv";
 import fractionRouter from "./routes/fraction.js";
 import nftRouter from "./routes/nft.js";
 import batchRouter from "./routes/batch.js";
-
+import cors from "cors";
 dotenv.config();
 
 const app = express();
 
 // Connect to MongoDB
 connectDB();
+
+app.use(cors());
 
 // Middleware
 app.use(express.json());

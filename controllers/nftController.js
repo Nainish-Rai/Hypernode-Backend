@@ -1,19 +1,15 @@
 import Fraction from "../models/Fraction.js";
 import { prepareContractCall, sendTransaction } from "thirdweb";
-import { contract, client } from "../thridwebClient.js";
+import { contract, thirdWebClient } from "../thirdwebClient.js";
 import dotenv from "dotenv";
 
-const sdk = ThirdwebSDK.fromPrivateKey(
-  process.env.WALLET_PRIVATE_KEY,
-  Number(process.env.CHAIN_ID),
-  {
-    secretKey: process.env.THIRDWEB_SECRET_KEY,
-  }
-);
-
-const thirdWebClient = createThirdwebClient({
-  secretKey: process.env.THIRDWEB_SECRET_KEY,
-});
+// const sdk = ThirdwebSDK.fromPrivateKey(
+//   process.env.WALLET_PRIVATE_KEY,
+//   Number(process.env.CHAIN_ID),
+//   {
+//     secretKey: process.env.THIRDWEB_SECRET_KEY,
+//   }
+// );
 
 export const mintFractionalNFT = async (req, res) => {
   const { fractionTokenId } = req.body;

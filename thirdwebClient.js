@@ -1,14 +1,16 @@
 import { createThirdwebClient, getContract } from "thirdweb";
 import { defineChain } from "thirdweb/chains";
+import dotenv from "dotenv";
+dotenv.config();
 
 // create the client with your clientId, or secretKey if in a server environment
-export const client = createThirdwebClient({
-  clientId: "YOUR_CLIENT_ID",
+export const thirdWebClient = createThirdwebClient({
+  secretKey: process.env.THIRDWEB_SECRET_KEY,
 });
 
 // connect to your contract
 export const contract = getContract({
-  client,
+  thirdWebClient,
   chain: defineChain(84532),
-  address: "0x142A6Dbe60024dBdcE5455aa63589Fd7E85E4Cf5",
+  address: process.env.CONTRACT_ADDRESS,
 });
